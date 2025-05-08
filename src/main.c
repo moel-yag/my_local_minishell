@@ -24,6 +24,11 @@ int main(void)
 			free(input);
 			continue; // Prompt again if validation fails
 		}
+		if (!pipe_syntax(input))
+		{
+			free(input);
+			continue;
+		}
 		// Pass validated input to ft_split
 		char **tokens = ft_split(input, ' ');
 		if (tokens)

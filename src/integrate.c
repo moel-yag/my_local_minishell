@@ -15,8 +15,9 @@ static void remove_newline(char *line) {
 void shell_loop(t_command *cmd) {
     // This function should handle the shell loop, executing commands and managing the shell state.
     // For now, we'll just print the command for demonstration purposes.
+    (void) cmd;
     char *input = NULL;
-    size_t len = 0;
+    // size_t len = 0;
     t_command *commands = NULL;
 
     while (1) {
@@ -26,24 +27,20 @@ void shell_loop(t_command *cmd) {
             printf("\n"); // Handle EOF (Ctrl+D)
             break;
         }
-
         // Remove trailing newline
         remove_newline(input);
         if (strlen(input) == 0) {
             free(input);
             continue; // Skip empty input
         }
-
         // Parse input and add to linked list
         t_command *cmd = parse_input(input);
         if (cmd)
             add_command(&commands, cmd);
-
         // Exit condition
         if (strcmp(input, "exit") == 0)
             break;
     }
-
     free(input);
     free_commands(commands);
 }

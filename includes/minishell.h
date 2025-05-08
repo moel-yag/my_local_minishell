@@ -14,12 +14,12 @@
 #define MAX_CMD_LENGTH 1024
 
 /* Token types */
-#define WORD    0
-#define PIPE    1
-#define GREAT   2  /* > */
-#define DGREAT  3  /* >> */
-#define LESS    4  /* < */
-#define DLESS   5  /* << */
+// #define WORD    0
+// #define PIPE    1
+// #define GREAT   2  /* > */
+// #define DGREAT  3  /* >> */
+// #define LESS    4  /* < */
+// #define DLESS   5  /* << */
 
 // Structure for linked list nodes to store commands
 // typedef struct s_command
@@ -33,9 +33,9 @@
 typedef struct s_lexer
 {
     char *value;           // Token value
-    char type;             // Token type (e.g., 'P' for pipe, 'I' for input redirection, etc.)
-    bool in_quotes;        // Whether the token is inside quotes
-    int  token;
+    // char type;             // Token type (e.g., 'P' for pipe, 'I' for input redirection...)
+    // bool in_quotes;        // Whether the token is inside quotes
+    // int  token;
     struct s_lexer *next;  // Pointer to the next token
     struct s_lexer *prev;  // Pointer to the previous token
 } t_lexer;
@@ -57,16 +57,16 @@ typedef struct s_command {
 
 /* Function prototypes */
 t_lexer     *tokenize_input(const char *input);
-void        free_lexer(t_lexer **lexer);
+void        free_lexer(const char **input);
 bool        unclosed_quotes(const char *input);
 bool        is_blank_line(const char *s);
 void        print_syntax_error();
 bool        validate_syntax(const char *input);
 char        **ft_split(const char *str, char delimiter);
 // Syntax validation functions
-int         pipe_syntax(t_lexer *lex);
-int         files_syntax(t_lexer *lex);
-int         check_syntax(t_lexer *lex);
+bool        pipe_syntax(const char *input);
+bool        file_syntax(const char *input);
+bool        check_syntax(const char *input);
 
 // Function prototypes
 void        multi_to_single_space(char **av, char *res, int ac);

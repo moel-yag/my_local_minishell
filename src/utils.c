@@ -22,24 +22,34 @@ void    print_syntax_error()
     // g_exit_status = 2;
 }
 
-void free_lexer(t_lexer **lexer)
+void free_lexer(const char **str)
 {
-    t_lexer *current;
-    t_lexer *next;
-
-    if (!lexer || !*lexer)
+    if (!str || !*str)
         return;
 
-    current = *lexer;
-    while (current)
-    {
-        next = current->next;
-        free(current->value); // Free the token value
-        free(current);        // Free the lexer node
-        current = next;
-    }
-    *lexer = NULL; // Set the pointer to NULL to avoid dangling references
+    free((void *)*str); // Cast away const to free safely
+    *str = NULL;        // Avoid dangling pointer
 }
+
+
+// void free_lexer(t_lexer **lexer)
+// {
+//     t_lexer *current;
+//     t_lexer *next;
+
+//     if (!lexer || !*lexer)
+//         return;
+
+//     current = *lexer;
+//     while (current)
+//     {
+//         next = current->next;
+//         free(current->value); // Free the token value
+//         free(current);        // Free the lexer node
+//         current = next;
+//     }
+//     *lexer = NULL; // Set the pointer to NULL to avoid dangling references
+// }
 
 void  multi_to_single_space(char **av, char *res, int ac)
 {
