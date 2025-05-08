@@ -1,6 +1,6 @@
 CC = cc
 LDFLAGS = -lreadline
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
 # Source files
 SRC = src/main.c \
   src/cmd.c\
@@ -25,11 +25,11 @@ all: $(NAME)
 
 # Linking the binary
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 # Compiling object files
 %.o: %.c
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Cleaning object files
 clean:

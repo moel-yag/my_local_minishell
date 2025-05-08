@@ -80,9 +80,10 @@ char **ft_split(char const *s, char c)
     if (!s || !c)
         return (NULL);
     count = cnt_strings(s, c);
-    splited = malloc(sizeof(char *) * count + 1);
+    splited = malloc(sizeof(char *) * (count + 1));
     if (splited == NULL)
         return (NULL);
+    splited[count] = NULL;
     ft_get_strings_length(splited, s, c);
     ft_fill_strings(splited, s, c);
     return (splited);
