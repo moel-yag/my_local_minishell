@@ -1,28 +1,28 @@
 #include "../../includes/minishell.h"
 
-bool pipe_syntax(const char *input)
+bool	pipe_syntax(const char *input)
 {
-    int i = 0;
-    bool prev_pipe = false;
+	int		i;
+	bool	prev_pipe;
 
-    while (input[i])
-    {
-        if (input[i] == '|')
-        {
-            if (prev_pipe || i == 0 || input[i + 1] == '\0')
-            {
-                printf("Error: Invalid pipe syntax\n");
-                return (false);
-            }
-            prev_pipe = true;
-        }
-        else if (input[i] != ' ' && input[i] != '\t')
-        {
-            prev_pipe = false;
-        }
-        i++;
-    }
-    return (true);
+	prev_pipe = false;
+	i = 0;
+	while (input[i])
+	{
+		if (input[i] == '|')
+		{
+			if (prev_pipe || i == 0 || input[i + 1] == '\0')
+			{
+				printf("Error: Invalid pipe syntax\n");
+				return (false);
+			}
+			prev_pipe = true;
+		}
+		else if (input[i] != ' ' && input[i] != '\t')
+			prev_pipe = false;
+		i++;
+	}
+	return (true);
 }
 
 // int pipe_syntax(t_lexer *lex)

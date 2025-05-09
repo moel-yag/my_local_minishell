@@ -1,6 +1,6 @@
 CC = cc
 LDFLAGS = -lreadline
-CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3# -fsanitize=address
 # Source files
 SRC = src/main.c \
   src/cmd.c\
