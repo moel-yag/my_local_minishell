@@ -1,5 +1,34 @@
 #include "../../includes/minishell.h"
 
+bool	file_syntax(const char *input)
+{
+    int i = 0;
+
+    while (input[i])
+    {
+        if (input[i] == '<' || input[i] == '>')
+        {
+            // Check for invalid cases: consecutive redirection operators
+            if ((input[i + 1] == '<' || input[i + 1] == '>') && input[i + 2] == '<')
+            {
+                printf("Error: Invalid file redirection syntax\n");
+                return (false);
+            }
+            // Check if there's no valid character after the redirection operator
+            int j = i + 1;
+            while (input[j] == ' ' || input[j] == '\t')
+                j++;
+            if (input[j] == '\0' || input[j] == '<' || input[j] == '>')
+            {
+                printf("Error: Invalid file redirection syntax\n");
+                return (false);
+            }
+        }
+        i++;
+    }
+    return (true);
+}
+
 bool file_syntax(const char *input)
 {
     int i = 0;
