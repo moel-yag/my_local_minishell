@@ -35,30 +35,30 @@ bool	pipe_syntax(const char *input)
     return (true);
 }
 
-bool	pipe_syntax(const char *input)
-{
-	int		i;
-	bool	prev_pipe;
+// bool	pipe_syntax(const char *input)
+// {
+// 	int		i;
+// 	bool	prev_pipe;
 
-	prev_pipe = false;
-	i = 0;
-	while (input[i])
-	{
-		if (input[i] == '|')
-		{
-			if (prev_pipe || i == 0 || input[i + 1] == '\0')
-			{
-				printf("Error: Invalid pipe syntax\n");
-				return (false);
-			}
-			prev_pipe = true;
-		}
-		else if (input[i] != ' ' && input[i] != '\t')
-			prev_pipe = false;
-		i++;
-	}
-	return (true);
-}
+// 	prev_pipe = false;
+// 	i = 0;
+// 	while (input[i])
+// 	{
+// 		if (input[i] == '|')
+// 		{
+// 			if (prev_pipe || i == 0 || input[i + 1] == '\0')
+// 			{
+// 				printf("Error: Invalid pipe syntax\n");
+// 				return (false);
+// 			}
+// 			prev_pipe = true;
+// 		}
+// 		else if (input[i] != ' ' && input[i] != '\t')
+// 			prev_pipe = false;
+// 		i++;
+// 	}
+// 	return (true);
+// }
 
 // int pipe_syntax(t_lexer *lex)
 // {
